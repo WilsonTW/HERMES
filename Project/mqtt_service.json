@@ -1,0 +1,27 @@
+{
+    "connector" :[
+        {
+            "mqtt_version" : "v3",
+            "name" : "aws_emqx",
+            "client_id" : "ra000001",
+            "host" : "3.129.206.52",
+            "port" : 1883,
+            "keep_alive" : 60,
+            "reconnect_time" : 30,
+            "encryption_mode" : 0,
+            "ca_file" : null,
+            "cert_file" : null,
+            "key_file" : null,
+            "cert_password" : null,
+            "username" : "wilson",
+            "password" : "wilsonpw",
+            "will_message" : {
+                "enable" : false,
+                "topic" : null,
+                "message" : null,
+                "qos" : 2,
+                "retain" : true
+            }
+	}
+    ]
+}
