@@ -2,7 +2,7 @@ mqtt = MQTTAPI()
 daq = DAQAPI()
 JSON = require("modules/JSON")
 
-local ems_prompt = "/BOFI/gaius/sp4k/1/"
+local ems_prompt = "/AEGIS/RA/"
 
 function wait(seconds)
 	local start = os.time()
@@ -14,7 +14,7 @@ function on_report(context)
 	-- local connected = context.information.Connected
 	local sys_time = os.date('%Y-%m-%d %H:%M:%S')
 	
-	mqtt:Publish("mqtt2", ems_prompt .. "sysTime", sys_time, 1, true)
+	mqtt:Publish("aws_emqx", ems_prompt .. "sysTime", sys_time, 1, true)
 	wait(2)
 end
 
