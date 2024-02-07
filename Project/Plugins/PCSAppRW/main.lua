@@ -57,7 +57,7 @@ lastGreenE = 0
 lastGreyE = 0
 acOutAcRetP = 0
 
-local ems_prompt = "/BOFI/gaius/sp4k/"
+local ems_prompt = "/AEGIS/RA/"
 local startTime = os.time()
 
 local date_list = {}
@@ -86,12 +86,12 @@ function on_report(context)
 	local bits
 	local prefix = ems_prompt
 
-	if ((context.information.DeviceID == "gaiusPCS1" or context.information.DeviceID == "gaiusPCS2") and 
+	if ((context.information.DeviceID == "advanioPcs403" or context.information.DeviceID == "advanioPcs501") and 
 		(context.information.Connected == true)) then
 
-		if (context.information.DeviceID == "gaiusPCS1") then
+		if (context.information.DeviceID == "advanioPcs403") then
 			prefix = ems_prompt .. "1/"
-		elseif (context.information.DeviceID == "gaiusPCS2") then
+		elseif (context.information.DeviceID == "advanioPcs501") then
 			prefix = ems_prompt .. "2/"
 		end
 		
@@ -297,7 +297,7 @@ function on_report(context)
 				lastGreyE = 0
 			end
 			pcs["dayCount"] = dayCount
-			mqtt:Publish("mqtt2", prefix .. "dayCount", dayCount, 1, true)
+			mqtt:Publish("aws_emqx", prefix .. "dayCount", dayCount, 1, true)
 			lastGreenE = lastGreenE + sliceGreenE
 			lastGreyE = lastGreyE + sliceGreyE
 			pcs["lastGreenE"] = lastGreenE
@@ -321,7 +321,7 @@ function on_report(context)
 		pcs["sumGreyE"] = sumGreyE		
 
 		local pcs_text = JSON:encode(pcs)
-		mqtt:Publish("mqtt2", prefix .. "report", pcs_text, 2, false)
+		mqtt:Publish("aws_emqx", prefix .. "report", pcs_text, 2, false)
 
 		if not is_today() then
 			sumGreenE = 0
@@ -350,20 +350,20 @@ function on_message(context)
   	end
   
 	if (topic == ems_prompt .. "1/con3/w") and (value == 0) then
-		daq:Write("gaiusPCS1", con3, value)
+		daq:Write("advanioPcs403", con3, value)
 	elseif (topic == ems_prompt .. "2/con3/w") and (value == 0) then
-		daq:Write("gaiusPCS2", con3, value)
+		daq:Write("advanioPcs501", con3, value)
 	elseif (topic == ems_prompt .. "1/con4/w") then
 		if (value == 1) then
-			daq:Write("gaiusPCS1", con4, value)
+			daq:Write("advanioPcs403", con4, value)
 		elseif (value == 0) then
-			daq:Write("gaiusPCS1", con4, value)
+			daq:Write("advanioPcs403", con4, value)
 		end	
 	elseif (topic == ems_prompt .. "2/con4/w") then
 		if (value == 1) then
-			daq:Write("gaiusPCS2", con4, value)
+			daq:Write("advanioPcs501", con4, value)
 		elseif (value == 0) then
-			daq:Write("gaiusPCS2", con4, value)
+			daq:Write("advanioPcs501", con4, value)
 		end	
 	end
 end
@@ -374,7 +374,7 @@ daq:OnReport(on_report)
 mqtt:OnMessage(on_message);
 
 --Subscribe topic
-mqtt:Subscribe("mqtt2", ems_prompt .. "1/con3/w", 2);
-mqtt:Subscribe("mqtt2", ems_prompt .. "1/con4/w", 2);
-mqtt:Subscribe("mqtt2", ems_prompt .. "2/con3/w", 2);
-mqtt:Subscribe("mqtt2", ems_prompt .. "2/con4/w", 2);
+mqtt:Subscribe("aws_emqx", ems_prompt .. "1/con3/w", 2);
+mqtt:Subscribe("aws_emqx", ems_prompt .. "1/con4/w", 2);
+mqtt:Subscribe("aws_emqx", ems_prompt .. "2/con3/w", 2);
+mqtt:Subscribe("aws_emqx", ems_prompt .. "2/con4/w", 2);

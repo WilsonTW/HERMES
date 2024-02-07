@@ -7,7 +7,7 @@
       "Channel": {
         "Type": "SerialPort",
         "SerialPort": {
-          "PortName": "/dev/serial0",
+          "PortName": "/dev/ttyS0",
           "BaudRate": 9600,
           "DataBits": 8,
           "Parity": "none",
@@ -16,11 +16,11 @@
         }
       },
       "Devices": {
-        "gaiusPCS1": {
-          "Name": "gaiusPCS1",
-          "Profile": "gaiusPcs",
+        "advanioPcs403": {
+          "Name": "advanioPcs403",
+          "Profile": "advanioPcs403",
           "Properties": {
-            "StationNo": 1,
+            "StationNo": 3,
             "Endian": "big",
             "CoilMaxNum": 2000,
             "InputMaxNum": 2000,
@@ -32,11 +32,11 @@
           },
           "Memo": ""
         },
-        "gaiusPCS2": {
-          "Name": "gaiusPCS2",
-          "Profile": "gaiusPcs",
+        "advanioPcs501": {
+          "Name": "advanioPcs501",
+          "Profile": "advanioPcs501",
           "Properties": {
-            "StationNo": 2,
+            "StationNo": 4,
             "Endian": "big",
             "CoilMaxNum": 2000,
             "InputMaxNum": 2000,
@@ -52,7 +52,7 @@
       "Properties": {
         "UpdatePeriod": 3000
       },
-      "Name": "gaiusPCS1",
+      "Name": "advanioPcs",
       "Description": "",
       "Driver": {
         "id": "channel.serialport",
