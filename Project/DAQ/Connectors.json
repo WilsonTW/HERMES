@@ -52,7 +52,7 @@
       "Properties": {
         "UpdatePeriod": 3000
       },
-      "Name": "advanioPcs",
+      "Name": "advanioPcs403",
       "Description": "",
       "Driver": {
         "id": "channel.serialport",
