@@ -21,7 +21,7 @@
           "Profile": "advanioPcs403",
           "Properties": {
             "StationNo": 3,
-            "Endian": "little",
+            "Endian": "big",
             "CoilMaxNum": 2000,
             "InputMaxNum": 2000,
             "HoldingRegMaxNum": 125,
@@ -31,7 +31,7 @@
             "RequestDelay": 0
           },
           "Memo": ""
-        } 
+        }     
       },
       "Properties": {
         "UpdatePeriod": 3000

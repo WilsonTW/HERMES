@@ -840,7 +840,7 @@
         "rank": [],
         "source": 1,
         "address": {
-          "address": "400003"
+          "address": "100001"
         },
         "properties": {},
         "memo": "",
@@ -866,7 +866,7 @@
         "rank": [],
         "source": 1,
         "address": {
-          "address": "400008"
+          "address": "100002"
         },
         "properties": {},
         "memo": "",
@@ -892,7 +892,7 @@
         "rank": [],
         "source": 1,
         "address": {
-          "address": "400292"
+          "address": "100003"
         },
         "properties": {},
         "memo": "",
@@ -918,7 +918,7 @@
         "rank": [],
         "source": 1,
         "address": {
-          "address": "400285"
+          "address": "100004"
         },
         "properties": {},
         "memo": "",
@@ -956,8 +956,8 @@
     }
   },
   "Information": {
-    "ID": "gaiusPcs",
-    "Name": "gaiusPcs",
+    "ID": "advanioPcs501_backup",
+    "Name": "advanioPcs501_backup",
     "Model": "Modbus",
     "Description": "",
     "ModelVersion": "1.0"
