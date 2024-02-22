@@ -50,7 +50,7 @@ function on_report(context)
 	local pcsGroup = {}
 
 	root["RA_ID"] = "RA000001"
-	root["Timestamp"] = os.date("!%Y-%m-%dT%H:%M:%S") .. "+0000"
+	root["Timestamp"] = os.date("%Y-%m-%dT%H:%M:%S") .. "+0800"
 	root["Status"] = "Operational"
 	
 	pcs["ID"] = "PCS67890"
