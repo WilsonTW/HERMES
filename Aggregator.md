@@ -14,6 +14,18 @@ JSON（JavaScript Object Notation）是一種輕量級的數據交換格式，�
 
 ## Aggregator Data Structure
 
+### MQTT **PUB** TOPIC
+```json
+/AEGIS/rA/RA000001/report
+```
+命名規則: /AEGIS **+** /rA **+** /**station ID** **+** /report
+
+### MQTT **SUB** TOPIC
+```json
+/AEGIS/rA/RA000001/control
+```
+命名規則: /AEGIS **+** /rA **+** /**station ID** **+** /control
+
 ### Aggregator JSON
 ```json
 {
@@ -82,6 +94,18 @@ JSON（JavaScript Object Notation）是一種輕量級的數據交換格式，�
 
 
 ## PCS Data Structure
+
+### MQTT **PUB** TOPIC
+```json
+/AEGIS/rPCS/PCS67890/report
+```
+命名規則: /AEGIS **+** /rPCS **+** /**station ID** **+** /report
+
+### MQTT **SUB** TOPIC
+```json
+/AEGIS/rPCS/PCS67890/control
+```
+命名規則: /AEGIS **+** /rPCS **+** /**station ID** **+** /control
 
 ### PCS JSON
 ```json
@@ -255,6 +279,18 @@ JSON（JavaScript Object Notation）是一種輕量級的數據交換格式，�
 - **Short_Circuit**: 短路。true表示系統發生短路故障，這是一種嚴重的電氣故障，需要立即處理以避免進一步損壞。
 
 ## BMS Data Structure
+
+### MQTT **PUB** TOPIC
+```json
+/AEGIS/rBMS/BMS54321/report
+```
+命名規則: /AEGIS **+** /rBMS **+** /**station ID** **+** /report
+
+### MQTT **SUB** TOPIC
+```json
+/AEGIS/rBMS/BMS54321/control
+```
+命名規則: /AEGIS **+** /rBMS **+** /**station ID** **+** /control
 
 ### BMS JSON
 ```json

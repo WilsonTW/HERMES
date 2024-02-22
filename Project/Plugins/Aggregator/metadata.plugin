@@ -1,0 +1,5 @@
+{
+    "name" : "Aggregator",
+    "priority" : 1,
+    "program" : "main.lua"
+}

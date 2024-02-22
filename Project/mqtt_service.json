@@ -2,9 +2,9 @@
     "connector" :[
         {
             "mqtt_version" : "v3",
-            "name" : "aws_emqx",
+            "name" : "dy_emqx",
             "client_id" : "ra000001",
-            "host" : "3.129.206.52",
+            "host" : "dingyan.duckdns.org",
             "port" : 1883,
             "keep_alive" : 60,
             "reconnect_time" : 30,
