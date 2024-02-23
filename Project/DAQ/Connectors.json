@@ -31,12 +31,44 @@
             "RequestDelay": 0
           },
           "Memo": ""
-        } 
+        },
+        "advanioPcs501": {
+          "Name": "advanioPcs501",
+          "Profile": "advanioPcs501",
+          "Properties": {
+            "StationNo": 4,
+            "Endian": "little",
+            "CoilMaxNum": 2000,
+            "InputMaxNum": 2000,
+            "HoldingRegMaxNum": 125,
+            "InputRegMaxNum": 125,
+            "Timeout": 1000,
+            "ResponseDelay": 0,
+            "RequestDelay": 0
+          },
+          "Memo": ""
+        },
+        "advanioPcs103": {
+          "Name": "advanioPcs103",
+          "Profile": "advanioPcs103",
+          "Properties": {
+            "StationNo": 1,
+            "Endian": "little",
+            "CoilMaxNum": 2000,
+            "InputMaxNum": 2000,
+            "HoldingRegMaxNum": 125,
+            "InputRegMaxNum": 125,
+            "Timeout": 1000,
+            "ResponseDelay": 0,
+            "RequestDelay": 0
+          },
+          "Memo": ""
+        }
       },
       "Properties": {
         "UpdatePeriod": 3000
       },
-      "Name": "advanioPcs403",
+      "Name": "simulator",
       "Description": "",
       "Driver": {
         "id": "channel.serialport",

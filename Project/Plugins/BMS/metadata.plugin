@@ -1,0 +1,5 @@
+{
+    "name" : "BMS",
+    "priority" : 1,
+    "program" : "main.lua"
+}
