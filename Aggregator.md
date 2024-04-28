@@ -164,6 +164,7 @@ JSON（JavaScript Object Notation）是一種輕量級的數據交換格式，�
 		"Charger_Keep_Battery_Voltage_Function": "true"
 	},
 	"Errors": {
+		"Solar_Input_Loss": "false",
 		"AC_Input_Over_Voltage": "false",
 		"AC_Input_Under_Voltage": "false",
 		"Battery_Over_Temperature": "false",
