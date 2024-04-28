@@ -269,6 +269,7 @@ JSON（JavaScript Object Notation）是一種輕量級的數據交換格式，�
 
 此部分包含了一系列布爾值（true或false），用於指示PCS系統可能遇到的各種錯誤狀態。
 
+- **Solar_Input_Loss**:接到逆變器的太陽能板輸入電壓低於正常運行所需的最小電壓門檻。
 - **AC_Input_Over_Voltage**: AC輸入過壓。當設為true時，表示系統檢測到交流輸入電壓超出了正常範圍上限，可能對系統造成損害。
 - **AC_Input_Under_Voltage**: AC輸入欠壓。true表示系統檢測到交流輸入電壓低於正常範圍下限，這可能影響系統性能。
 - **Battery_Over_Temperature**: 電池過溫。當此值為true時，表示系統內電池的溫度超過了安全工作範圍，需要進行冷卻或其他措施以避免損害。
