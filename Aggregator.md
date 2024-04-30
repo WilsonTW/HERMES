@@ -1,4 +1,4 @@
-# Aggregator JSON文件範例說明
+# Hermes(DER) JSON文件範例說明
 
 ## 引言
 
@@ -12,7 +12,7 @@ JSON（JavaScript Object Notation）是一種輕量級的數據交換格式，�
 - **數組（Arrays）**：由方括號包圍，表示為值的有序集合（[value1, value2]）。
 - **值（Values）**：可以是字符串（String）、數字（Number）、對象（Object）、數組（Array）、布爾值（true/false）或null。
 
-## Aggregator Data Structure
+## Hermes(DER) Data Structure
 
 ### MQTT **PUB** TOPIC
 ```json
@@ -26,7 +26,7 @@ JSON（JavaScript Object Notation）是一種輕量級的數據交換格式，�
 ```
 命名規則: /AEGIS **+** /rA **+** /**station ID** **+** /control
 
-### Aggregator JSON
+### Hermes(DER) JSON
 ```json
 {
     "RA_ID": "RA000001",
@@ -37,6 +37,9 @@ JSON（JavaScript Object Notation）是一種輕量級的數據交換格式，�
     ],
     "BMS": [
     	{"ID": "BMS54321", "Status": "Charging"}
+    ],
+    "PV_Inverter": [
+    	{"ID": "PV13579", "Status": "Operating"}
     ]
 }
 ```
@@ -91,6 +94,21 @@ JSON（JavaScript Object Notation）是一種輕量級的數據交換格式，�
 >- **Offline**: 表示BMS未與其它系統連接，或因網絡問題而無法通信。
 >- **Initializing**: BMS處於啟動初始化階段，準備各項內部參數以進入正常運行模式。
 >- **Standby**: BMS已準備好進行充電或放電操作，但當前未執行任何操作，等待進一步指令。
+
+
+### PV Inverter (光伏逆變器) 數組
+
+一個包含一個或多個PV_Inverter物件的數組，每個物件包含以下字段：
+
+- **ID**: 光伏逆變器的唯一識別碼，用於標識特定的光伏逆變器單元。
+- **Status**: 光伏逆變器的當前狀態，例如"Operating"表明光伏逆變器正常運作。
+
+>- **Operating**: 表示逆變器正在正常轉換太陽能板產生的直流電為交流電
+>- **Standby**: 當無太陽光或光照不足以產生電力時，逆變器會進入待機模式。
+>- **Fault**: 如果逆變器檢測到任何內部問題，例如溫度過高、電路問題或通訊錯誤，它將顯示故障狀態。
+>- **Warning**: 當逆變器運行中出現需要注意但不一定立即影響運行的問題時，會顯示警告狀態。
+>- **Maintenance**: 指逆變器正在進行維護作業，可能涉及硬件檢查、軟件更新或系統校準等。
+>- **Shutdown**: 逆變器可能因為外部指令或內部安全機制而進入關機狀態。
 
 
 ## PCS Data Structure
@@ -251,7 +269,7 @@ JSON（JavaScript Object Notation）是一種輕量級的數據交換格式，�
 
 ### 控制設置 (`Controls`)
 
-此部分包含了一系列布爾值（true或false），用以指示PCS系統的各種控制選項和模式。
+此部分包含了一系列布爾值（1：true/0：false），用以指示PCS系統的各種控制選項和模式。
 
 - **Generator_as_AC_Input**: 將發電機作為交流輸入。當設置為true時，表示系統允許從發電機接收交流輸入。
 - **Wide_AC_Input_Range**: 寬交流輸入範圍。true表示系統能夠接受較寬範圍的交流輸入電壓，增加了系統的靈活性和適應性。
@@ -268,7 +286,7 @@ JSON（JavaScript Object Notation）是一種輕量級的數據交換格式，�
 
 ### 錯誤狀態 (`Errors`)
 
-此部分包含了一系列布爾值（true或false），用於指示PCS系統可能遇到的各種錯誤狀態。
+此部分包含了一系列布爾值（1：true/0：false），用於指示PCS系統可能遇到的各種錯誤狀態。
 
 - **Solar_Input_Loss**:接到逆變器的太陽能板輸入電壓低於正常運行所需的最小電壓門檻。
 - **AC_Input_Over_Voltage**: AC輸入過壓。當設為true時，表示系統檢測到交流輸入電壓超出了正常範圍上限，可能對系統造成損害。
@@ -353,3 +371,53 @@ JSON（JavaScript Object Notation）是一種輕量級的數據交換格式，�
 - **Cell_ID**: 單個電池單元的唯一識別碼。
 - **Voltage**: 單個電池單元的電壓，單位為伏特(V)。
 - **Temperature**: 單個電池單元的溫度，單位為攝氏度(°C)。
+
+## PV_Inverter Data Structure
+
+### MQTT **PUB** TOPIC
+```json
+/AEGIS/rPV/PV13579/report
+```
+命名規則: /AEGIS **+** /rPV **+** /**station ID** **+** /report
+
+### MQTT **SUB** TOPIC
+```json
+/AEGIS/rPV/PV13579/control
+```
+命名規則: /AEGIS **+** /rPV **+** /**station ID** **+** /control
+
+### PV_Inverter JSON
+```json
+{
+	"PV_ID": "BMS54321",
+	"Timestamp": "2024-02-06T10:00:00Z",
+	"Status": "Operating",
+	"Battery_Capacity": "10000",
+	"Current_Charge": "7500",
+	"State_of_Charge": "75",
+	"Health_Status": "98"
+}
+```
+
+此JSON結構提供了一個光伏逆變器（PV Inverter）的數據模型，用於描述光伏逆變器的狀態以及其他相關信息。
+
+### 根層級字段
+
+- **PV_ID**: 光伏逆變器的唯一識別碼，用於標識特定的光伏逆變器單元。
+- **Timestamp**: 數據記錄的時間戳記，遵循ISO 8601格式，表示數據被記錄的精確時間。
+- **Status**: 光伏逆變器的當前狀態，例如"Operating"表明光伏逆變器正常運作。
+
+>- **Operating**: 表示逆變器正在正常轉換太陽能板產生的直流電為交流電
+>- **Standby**: 當無太陽光或光照不足以產生電力時，逆變器會進入待機模式。
+>- **Fault**: 如果逆變器檢測到任何內部問題，例如溫度過高、電路問題或通訊錯誤，它將顯示故障狀態。
+>- **Warning**: 當逆變器運行中出現需要注意但不一定立即影響運行的問題時，會顯示警告狀態。
+>- **Maintenance**: 指逆變器正在進行維護作業，可能涉及硬件檢查、軟件更新或系統校準等。
+>- **Shutdown**: 逆變器可能因為外部指令或內部安全機制而進入關機狀態。
+
+### 設備信息
+
+- **PV_Capacity**: PV的建置容量，單位為千瓦(kWp)。
+- **PR**: 衡量逆變器在實際運行條件下的效能與理論最大效能之比，用以評估系統的整體性能。通常表示為百分比 (%)。
+- **Irradiance**: 太陽光照射到太陽能板的強度，通常表示為瓦特每平方米 (W/m²)。
+- **Temperature**: 環境溫度 (Ambient Temperature)：逆變器周圍的空氣溫度，通常表示為攝氏度 (°C)。
+
